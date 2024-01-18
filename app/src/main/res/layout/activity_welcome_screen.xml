@@ -33,6 +33,7 @@
         android:text="Play Daily"
         android:layout_marginTop="110dp"
         android:background="@drawable/border"
+        android:onClick="toGameScreen"
         />
 
     <Button
@@ -40,6 +41,7 @@
         android:text="Play Unlimited"
         android:layout_marginTop="25dp"
         android:background="@drawable/border"
+        android:onClick="toGameScreen"
         />
 
 </LinearLayout>
