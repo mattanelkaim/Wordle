@@ -5,14 +5,41 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="10"
+    android:background="#1a1a1a">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="5">
+        style="@style/rowStyle">
+
+        <TextView
+            style="@style/CharacterBox"
+            android:text="W"
+            android:background="@drawable/letter_border"
+            android:layout_weight="1" />
+        <TextView
+            style="@style/CharacterBox"
+            android:text="O"
+            android:background="@drawable/letter_border"
+            android:layout_weight="1"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="R"
+            android:background="@drawable/letter_border"
+            android:layout_weight="1"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="D"
+            android:background="@drawable/letter_border"
+            android:layout_weight="1"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="S"
+            android:background="@drawable/letter_border"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/rowStyle">
 
         <TextView
             style="@style/CharacterBox"
@@ -42,11 +69,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="5">
+        style="@style/rowStyle">
 
         <TextView
             style="@style/CharacterBox"
@@ -76,11 +99,7 @@
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:orientation="horizontal"
-    android:weightSum="5">
+    style="@style/rowStyle">
 
         <TextView
             style="@style/CharacterBox"
@@ -110,45 +129,7 @@
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:orientation="horizontal"
-    android:weightSum="5">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:orientation="horizontal"
-    android:weightSum="5">
+        style="@style/rowStyle">
 
         <TextView
             style="@style/CharacterBox"
