@@ -13,6 +13,9 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">#cccccc</item>
         <item name="android:layout_margin">1.2dp</item>
+        <item name="android:background">@drawable/letter_border</item>
+        <item name="android:layout_weight">1</item>
+
     </style>
 
     <style name="Theme.rows" parent="Base.Theme.Wordle" />

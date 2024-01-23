@@ -13,29 +13,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1" />
+            android:text="W"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="D"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="S"/>
     </LinearLayout>
 
     <LinearLayout
@@ -43,29 +33,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="W"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="D"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="S"/>
     </LinearLayout>
 
     <LinearLayout
@@ -73,29 +53,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="W"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="D"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="S"/>
     </LinearLayout>
 
     <LinearLayout
@@ -103,29 +73,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="W"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="D"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="S"/>
     </LinearLayout>
 
     <LinearLayout
@@ -133,29 +93,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="W"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="D"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"
-            android:background="@drawable/letter_border"
-            android:layout_weight="1"/>
+            android:text="S"/>
     </LinearLayout>
 
     <android.inputmethodservice.KeyboardView
@@ -165,6 +115,4 @@
         />
 
 
-
-    <!-- Check constraint shit -->
 </LinearLayout>
