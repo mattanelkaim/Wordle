@@ -9,7 +9,8 @@
     android:background="#1a1a1a">
 
     <LinearLayout
-        style="@style/rowStyle">
+        style="@style/rowStyle"
+        android:layout_marginTop="50dp">
 
         <TextView
             style="@style/CharacterBox"
@@ -108,10 +109,7 @@
             android:text="S"/>
     </LinearLayout>
 
-    <android.inputmethodservice.KeyboardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+
         />
 
 
