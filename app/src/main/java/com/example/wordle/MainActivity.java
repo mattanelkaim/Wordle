@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rowsContainer = findViewById(R.id.gameScreen);
-
+        rowsContainer = findViewById(R.id.rowsContainer);
         // Button btn = findViewById(R.id.btn);
         // btn.setOnClickListener(this::checkGuess);
     }

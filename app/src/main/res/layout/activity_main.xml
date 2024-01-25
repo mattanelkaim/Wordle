@@ -6,7 +6,8 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="#1a1a1a">
+    android:background="#1a1a1a"
+    android:id="@+id/rowsContainer">
 
     <LinearLayout
         style="@style/rowStyle">
