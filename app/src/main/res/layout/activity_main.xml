@@ -6,8 +6,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="#1a1a1a"
-    android:id="@+id/gameScreen">
+    android:background="#1a1a1a">
 
     <LinearLayout
         style="@style/rowStyle">
@@ -108,13 +107,6 @@
             style="@style/CharacterBox"
             android:text="S"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="checkGuess"/>
 
     <android.inputmethodservice.KeyboardView
         android:layout_width="match_parent"
