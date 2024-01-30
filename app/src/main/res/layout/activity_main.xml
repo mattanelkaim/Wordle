@@ -10,8 +10,7 @@
     android:id="@+id/rowsContainer">
     
     <GridLayout
-        style="@style/rowStyle"
-        android:columnCount="5">
+        style="@style/rowStyle">
 
         <TextView
             style="@style/CharacterBox"
