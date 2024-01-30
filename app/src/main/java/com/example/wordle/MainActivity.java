@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         rowsContainer = findViewById(R.id.rowsContainer);
-        // Button btn = findViewById(R.id.btn);
-        // btn.setOnClickListener(this::checkGuess);
     }
 
     protected String getWordFromRow() {

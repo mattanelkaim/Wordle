@@ -7,19 +7,18 @@
 
     <style name="Theme.Wordle" parent="Base.Theme.Wordle" />
     <style name="CharacterBox" parent="@style/Widget.AppCompat.TextView">
-        <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">1.2dp</item>
         <item name="android:textSize">60sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#cccccc</item>
-        <item name="android:layout_margin">1.2dp</item>
         <item name="android:background">@drawable/letter_border</item>
     </style>
 
     <style name="rowStyle" parent="@style/Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1.2</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_marginTop">1dp</item>
     </style>

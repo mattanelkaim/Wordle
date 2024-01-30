@@ -9,7 +9,32 @@
     android:background="#1a1a1a"
     android:id="@+id/rowsContainer">
     
-    <GridLayout
+    <LinearLayout
+        style="@style/rowStyle"
+        android:columnCount="5"
+        android:weightSum="5"
+        android:alignmentMode="alignMargins"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CharacterBox"
+            android:text="W"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="O"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="R"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="D"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="S"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         style="@style/rowStyle">
 
         <TextView
@@ -27,10 +52,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
+    </LinearLayout>
 
-    </GridLayout>
-
-    <GridLayout
+    <LinearLayout
         style="@style/rowStyle">
 
         <TextView
@@ -48,9 +72,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </GridLayout>
+    </LinearLayout>
 
-    <GridLayout
+    <LinearLayout
         style="@style/rowStyle">
 
         <TextView
@@ -68,29 +92,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </GridLayout>
+    </LinearLayout>
 
-    <GridLayout
-    style="@style/rowStyle">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="W"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="R"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
-    </GridLayout>
-
-    <GridLayout
+    <LinearLayout
         style="@style/rowStyle">
 
         <TextView
@@ -108,7 +112,7 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </GridLayout>
+    </LinearLayout>
 
     <!-- Keyboard -->
 
