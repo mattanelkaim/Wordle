@@ -8,8 +8,30 @@
     android:weightSum="10"
     android:background="#1a1a1a"
     android:id="@+id/rowsContainer">
+    
+    <GridLayout
+        style="@style/rowStyle"
+        android:columnCount="5">
 
-    <LinearLayout
+        <TextView
+            style="@style/CharacterBox"
+            android:text="W"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="O"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="R"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="D"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="S"/>
+
+    </GridLayout>
+
+    <GridLayout
         style="@style/rowStyle">
 
         <TextView
@@ -27,9 +49,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </LinearLayout>
+    </GridLayout>
 
-    <LinearLayout
+    <GridLayout
         style="@style/rowStyle">
 
         <TextView
@@ -47,29 +69,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </LinearLayout>
+    </GridLayout>
 
-    <LinearLayout
-        style="@style/rowStyle">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="W"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="R"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <GridLayout
     style="@style/rowStyle">
 
         <TextView
@@ -87,9 +89,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </LinearLayout>
+    </GridLayout>
 
-    <LinearLayout
+    <GridLayout
         style="@style/rowStyle">
 
         <TextView
@@ -107,13 +109,9 @@
         <TextView
             style="@style/CharacterBox"
             android:text="S"/>
-    </LinearLayout>
+    </GridLayout>
 
-    <android.inputmethodservice.KeyboardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        />
+    <!-- Keyboard -->
 
 
 </LinearLayout>
