@@ -1,21 +1,18 @@
 package com.example.wordle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     final int WORD_LENGTH = 5;
     //final int MAX_GUESSES = 5;
     int guesses = 0;
     int currWordLen = 0;
     final String secret = "PHONE";
+    enum charScore {GREY, YELLOW, GREEN}
 
     LinearLayout rowsContainer;
 
@@ -40,14 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return word.toString();
     }
 
-    public void checkGuess(View view) {
-        final String word = getWordFromRow();
-        System.out.println("Guess = " + word);
-        // Compare to database;
-        if (word.equals(secret))
-            System.out.println("CONGRATS!!");
-    }
-
     public void setLetter(final char letter) {
         if (currWordLen == 5 && letter != ' ')
             return;
@@ -66,8 +55,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             currWordLen--;
     }
 
-    @Override
-    public void onClick(View view) {
+    public void checkGuess(View view) {
+        final String word = getWordFromRow();
+        System.out.println("Guess = " + word);
+        // Compare to database;
 
+        charScore[] wordScore = new charScore[WORD_LENGTH];
+        for (int i = 0; i < WORD_LENGTH; i++)
+            wordScore[i] = getCharScore(word.charAt(i), i);
+        colorScoreWord(view, wordScore);
+
+        guesses++;
+    }
+
+    public charScore getCharScore(final char ch, final int index) {
+        final int position = secret.indexOf(ch);
+        if (position == -1)
+            return charScore.GREY;
+        if (position == index)
+            return charScore.GREEN;
+        return charScore.YELLOW;
+    }
+
+    public void colorScoreWord(View view, charScore[] scores) {
+        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
+
+        for (int i = 0; i < WORD_LENGTH; i++)
+        {
+            TextView letterBox = (TextView) row.getChildAt(i);
+            if (scores[i] == charScore.GREY)
+                continue;
+
+            // Handle 2 cases where it's needed to change background
+            final int bg = (scores[i] == charScore.GREEN) ? R.drawable.correct_letter : R.drawable.kinda_correct_letter;
+            letterBox.setBackgroundResource(bg);
+        }
     }
 }
