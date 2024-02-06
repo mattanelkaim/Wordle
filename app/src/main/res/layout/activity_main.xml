@@ -114,7 +114,88 @@
             android:text="S"/>
     </LinearLayout>
 
-    <!-- Keyboard -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="160dp"
+        android:weightSum="10">
+
+        <TextView
+        style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+        <TextView
+            style="@style/keyboardKey"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_margin="3dp"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>
