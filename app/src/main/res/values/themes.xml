@@ -14,7 +14,7 @@
         <item name="android:textSize">55sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#CCCCCC</item>
-        <item name="android:background">@drawable/correct_letter</item>
+        <item name="android:background">@drawable/default_letter</item>
     </style>
 
     <style name="rowStyle" parent="@style/Widget.AppCompat.TextView">

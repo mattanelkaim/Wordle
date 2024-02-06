@@ -18,7 +18,7 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"/>
+            android:text="P"/>
         <TextView
             style="@style/CharacterBox"
             android:text="O"/>
@@ -39,19 +39,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"/>
+            android:text="A"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"/>
+            android:text="L"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="E"/>
         <TextView
             style="@style/CharacterBox"
             android:text="R"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
+            android:text="T"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,19 +59,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="R"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
             android:text="S"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="H"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="E"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="L"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="F"/>
     </LinearLayout>
 
     <LinearLayout
@@ -79,19 +79,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"/>
+            android:text="Y"/>
         <TextView
             style="@style/CharacterBox"
             android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"/>
+            android:text="U"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"/>
+            android:text="N"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="S"/>
+            android:text="G"/>
     </LinearLayout>
 
     <LinearLayout
@@ -99,20 +99,27 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="W"/>
+            android:text="P"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="H"/>
         <TextView
             style="@style/CharacterBox"
             android:text="O"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"/>
+            android:text="N"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
+            android:text="E"/>
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Check"
+        android:onClick="checkGuess"/>
 
     <!-- Keyboard -->
 
