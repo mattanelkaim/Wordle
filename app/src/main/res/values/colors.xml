@@ -6,6 +6,7 @@
     <color name="background_grey">#FF404040</color>
     <color name="light_green">#FF009900</color>
     <color name="grey_default_letter">#FF262626</color>
-    <color name="green_correct_letter">#FF0C7906</color>
+    <color name="grey_incorrect_letter">#FF4D4D4D</color>
     <color name="yellow_kinda_correct_letter">#FFEBAD07</color>
+    <color name="green_correct_letter">#FF0C7906</color>
 </resources>

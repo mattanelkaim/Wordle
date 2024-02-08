@@ -18,19 +18,19 @@
 
         <TextView
             style="@style/CharacterBox"
-            android:text="P"/>
+            android:text="C"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="O"/>
+            android:text="I"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="G"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="A"/>
         <TextView
             style="@style/CharacterBox"
             android:text="R"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
 
     </LinearLayout>
 
@@ -42,16 +42,16 @@
             android:text="A"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="L"/>
+            android:text="A"/>
+        <TextView
+            style="@style/CharacterBox"
+            android:text="H"/>
         <TextView
             style="@style/CharacterBox"
             android:text="E"/>
         <TextView
             style="@style/CharacterBox"
-            android:text="R"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="T"/>
+            android:text="D"/>
     </LinearLayout>
 
     <LinearLayout
