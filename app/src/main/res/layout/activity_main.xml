@@ -114,6 +114,120 @@
             android:text="E"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="160dp"
+        android:weightSum="10">
+
+        <TextView
+            style="@style/keyboardKey"
+            android:text="Q"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="W"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="E"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="R"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="T"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="Y"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="U"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="I"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="O"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="P"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <TextView
+            style="@style/keyboardKey"
+            android:text="A"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="S"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="D"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="F"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="G"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="H"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="J"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="K"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="L"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <TextView
+            style="@style/keyboardKey"
+            android:text="Z"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="X"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="C"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="V"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="B"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="N"/>
+        <TextView
+            style="@style/keyboardKey"
+            android:text="M"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_margin="3dp"
+            android:background="@drawable/keys"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:text="ENTER"/>
+
+    </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
