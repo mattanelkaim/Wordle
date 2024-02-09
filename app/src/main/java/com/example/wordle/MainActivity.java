@@ -1,8 +1,10 @@
 package com.example.wordle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,21 +13,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     final String ANSWERS_FILE = "answers.txt";
     final String WORDLIST_FILE = "wordlist.txt";
     final int WORD_LENGTH = 5;
-    final int MAX_GUESSES = 5;
+    final int MAX_GUESSES = 6;
     String secret;
     int guesses = 0;
-    int currWordLen = 5;
+    int currWordLen = 0;
     public Set<String> wordlist = new HashSet<>();
+
     enum charScore {GREY, YELLOW, GREEN}
 
     LinearLayout rowsContainer;
@@ -46,13 +48,40 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error opening files!", Toast.LENGTH_SHORT).show();
         }
 
+        setKeyboardListeners();
         rowsContainer = findViewById(R.id.rowsContainer);
+    }
+
+    public void setKeyboardListeners() {
+        LinearLayout row1 = findViewById(R.id.keyboardRow1);
+        LinearLayout row2 = findViewById(R.id.keyboardRow2);
+        LinearLayout row3 = findViewById(R.id.keyboardRow3);
+
+        for (int i = 0; i < 10; i++)
+        {
+            row1.getChildAt(i).setOnClickListener(this);
+        }
+        for (int i = 0; i < 9; i++)
+        {
+            row2.getChildAt(i).setOnClickListener(this);
+        }
+        for (int i = 1; i < 8; i++)
+        {
+            row3.getChildAt(i).setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        final String clickedValue = ((TextView)v).getText().toString();
+        if (clickedValue.length() == 1)
+            setLetter(clickedValue.charAt(0));
     }
 
     /* ################ GET & MODIFY GUESS ################ */
 
     protected String getWordFromRow() {
-        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
+        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses + 1); // +1 to skip answer box
         StringBuilder word = new StringBuilder();
 
         for (int i = 0; i < WORD_LENGTH; i++)
@@ -67,28 +96,33 @@ public class MainActivity extends AppCompatActivity {
     public void setLetter(final char letter) {
         if (guesses >= MAX_GUESSES)
             return;
-        if (currWordLen == 5 && letter != ' ') // Index len
+        if (letter != ' ' && currWordLen == 5) // Index len
             return;
-        if (currWordLen == 0 && letter == ' ')
+        if (letter == ' ' && --currWordLen == -1) // Decrease len to delete correctly
+        {
+            currWordLen = 0; // Update back
             return;
+        }
 
-        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
-        TextView box = (TextView) row.getChildAt(currWordLen - 1); // Normalize to index
+        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses + 1); // +1 to skip answer box
+        TextView box = (TextView) row.getChildAt(currWordLen); // Normalize to index
 
         System.out.println("Found box: " + box.getText().toString());
-        box.setText(" ");
+        box.setText(String.valueOf(letter));
 
         // Update currWordLen respectively
         if (letter != ' ')
             currWordLen++;
-        else
-            currWordLen--;
+
+        System.out.println(currWordLen);
     }
 
     public void delete(View view)
     {
         setLetter(' ');
     }
+
+    /* ################ GUESS CHECKING & WIN/LOSE LOGIC ################ */
 
     public void checkGuess(View view) {
         if (guesses == MAX_GUESSES)
@@ -103,8 +137,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final String word = getWordFromRow();
-        System.out.println("Guess = " + word);
-        if (!wordlist.contains(word.toLowerCase()))
+        if (!wordlist.contains(word.toLowerCase())) // Words in wordlist are lowercase
         {
             Toast.makeText(this, "Word is not in wordlist!", Toast.LENGTH_SHORT).show();
             return;
@@ -113,11 +146,23 @@ public class MainActivity extends AppCompatActivity {
         charScore[] wordScore = new charScore[WORD_LENGTH];
         for (int i = 0; i < WORD_LENGTH; i++)
             wordScore[i] = getCharScore(word.charAt(i), i);
-        colorScoreWord(view, wordScore);
+        colorScoreWord(wordScore);
 
-        guesses++;
-        //currWordLen = 0;
+        if (++guesses >= MAX_GUESSES)
+            lose();
+
+        currWordLen = 0;
     }
+
+    public void lose() {
+        System.out.println("player lost");
+        GridLayout answerBox = findViewById(R.id.answer);
+        TextView answer = (TextView) answerBox.getChildAt(1);
+        answer.setText(secret);
+        answerBox.setVisibility(View.VISIBLE);
+    }
+
+    /* ################ HANDLE GUESS SCORING ################ */
 
     public charScore getCharScore(final char ch, final int index) {
         final int position = secret.indexOf(ch);
@@ -129,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
         return charScore.YELLOW;
     }
 
-    public void colorScoreWord(View view, final charScore[] scores) {
-        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
+    public void colorScoreWord(final charScore[] scores) {
+        final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses + 1); // +1 to skip answer box
 
         for (int i = 0; i < WORD_LENGTH; i++)
         {
@@ -139,10 +184,7 @@ public class MainActivity extends AppCompatActivity {
             // Handle 2 cases where it's needed to change background
             int bg;
             if (scores[i] == charScore.GREY)
-            {
-                System.out.println("incorrect letter");
                 bg = R.drawable.incorrect_letter;
-            }
             else if (scores[i] == charScore.YELLOW)
                 bg = R.drawable.kinda_correct_letter;
             else
@@ -151,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
             letterBox.setBackgroundResource(bg);
         }
     }
+
+    /* ################ FILES & WORDLIST ################ */
 
     public void loadWordlist() throws IOException {
         InputStream file = getAssets().open(WORDLIST_FILE);
@@ -174,10 +218,12 @@ public class MainActivity extends AppCompatActivity {
         final long offset = (long) (WORD_LENGTH + 1) * (n - 1);
         byte[] data = new byte[WORD_LENGTH];
         file.reset(); // Seek back to top
-        file.skip(offset);
-        file.read(data);
+        final long skipped = file.skip(offset);
+        final long read = file.read(data);
+        if (skipped != offset || read != WORD_LENGTH)
+            throw new IOException("ERROR: Skip/read failed");
 
-        secret = new String(data).toUpperCase();
+        secret = new String(data).toUpperCase(); // Words in answers file are lowercase
         System.out.println("secret = " + secret);
     }
 }

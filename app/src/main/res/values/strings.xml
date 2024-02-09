@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Wordle</string>
+    <string name="backspace">Backspace</string>
+    <string name="enter">ENTER</string>
+    <string name="the_word_was">THE WORD WAS</string>
 </resources>

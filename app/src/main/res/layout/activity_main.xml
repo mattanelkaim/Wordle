@@ -1,247 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:weightSum="10"
-    android:background="#1a1a1a"
-    android:id="@+id/rowsContainer">
-    
-    <LinearLayout
-        style="@style/rowStyle"
-        android:layout_marginTop="80dp">
+    android:background="#1A1A1A"
+    android:id="@+id/rowsContainer"
+    android:layoutDirection="ltr"
+    tools:ignore="">
 
+    <GridLayout
+        android:id="@+id/answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:layout_gravity="center"
+        android:visibility="invisible">
         <TextView
-            style="@style/CharacterBox"
-            android:text="C"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/the_word_was"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"/>
         <TextView
-            style="@style/CharacterBox"
-            android:text="I"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="G"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="A"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="R"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+    </GridLayout>
 
+    <LinearLayout style="@style/rowStyle"
+        android:layout_marginTop="50dp">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/rowStyle">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="A"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="A"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="H"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="E"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="D"/>
+    <LinearLayout style="@style/rowStyle">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/rowStyle">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="S"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="H"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="E"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="L"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="F"/>
+    <LinearLayout style="@style/rowStyle">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/rowStyle">
-
-        <TextView
-            style="@style/CharacterBox"
-            android:text="Y"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="U"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="N"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="G"/>
+    <LinearLayout style="@style/rowStyle">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/rowStyle">
+    <LinearLayout style="@style/rowStyle">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+    </LinearLayout>
 
-        <TextView
-            style="@style/CharacterBox"
-            android:text="P"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="H"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="O"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="N"/>
-        <TextView
-            style="@style/CharacterBox"
-            android:text="E"/>
+    <LinearLayout style="@style/rowStyle">
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
+        <TextView style="@style/CharacterBox"/>
     </LinearLayout>
 
     <!-- KEYBOARD -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="170dp"
-        android:layout_marginHorizontal="15dp"
-        android:weightSum="10">
+    <LinearLayout style="@style/keyboardRow"
+        android:layout_marginTop="75dp"
+        android:id="@+id/keyboardRow1">
 
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="Q"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="W"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="E"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="R"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="T"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="Y"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="U"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="I"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="O"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="P"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout style="@style/keyboardRow"
         android:layout_marginHorizontal="30dp"
-        android:orientation="horizontal"
-        android:weightSum="9">
+        android:id="@+id/keyboardRow2">
 
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="A"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="S"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="D"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="F"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="G"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="H"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="J"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="K"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="L"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="15dp"
-        android:weightSum="10">
+    <LinearLayout style="@style/keyboardRow"
+        android:id="@+id/keyboardRow3">
 
-        <TextView
-            android:layout_width="0dp"
+        <TextView style="@style/keyboardKey"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:layout_margin="2dp"
-            android:background="@drawable/keys"
-            android:textColor="#FFFFFF"
-            android:gravity="center"
             android:textSize="12sp"
-            android:text="ENTER"
-            android:clickable="true"
+            android:text="@string/enter"
             android:onClick="checkGuess"/>
 
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="Z"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="X"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="C"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="V"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="B"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="N"/>
-        <TextView
-            style="@style/keyboardKey"
+        <TextView style="@style/keyboardKey"
             android:text="M"/>
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1.5"
-            android:background="@drawable/keys"
-            android:scaleType="fitCenter"
-            android:padding="8dp"
+        <ImageButton style="@style/keyboardKey"
             android:src="@drawable/backspace"
-            android:contentDescription="Backspace"
-            android:onClick="delete"/>
+            android:contentDescription="@string/backspace"
+            android:onClick="delete"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:padding="8dp"/>
     </LinearLayout>
 
 </LinearLayout>
