@@ -6,31 +6,32 @@
     </style>
     <style name="Theme.Wordle" parent="Base.Theme.Wordle" />
 
-    <style name="CharacterBox" parent="@style/Widget.AppCompat.TextView">
+    <style name="CharacterBox">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_height">65dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">1.2dp</item>
-        <item name="android:textSize">55sp</item>
+        <item name="android:layout_marginHorizontal">3dp</item>
+        <item name="android:textSize">45sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">#CCCCCC</item>
         <item name="android:background">@drawable/default_letter</item>
     </style>
 
-    <style name="rowStyle" parent="@style/Widget.AppCompat.TextView">
+    <style name="rowStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginHorizontal">30dp</item>
     </style>
 
     <style name="keyboardKey" parent="@style/Widget.AppCompat.TextView">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">52dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">@drawable/keys</item>
         <item name="android:clickable">true</item>

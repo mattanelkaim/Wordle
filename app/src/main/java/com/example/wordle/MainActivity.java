@@ -8,15 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
@@ -29,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     final int MAX_GUESSES = 5;
     String secret;
     int guesses = 0;
-    int currWordLen = 0;
+    int currWordLen = 5;
     public Set<String> wordlist = new HashSet<>();
     enum charScore {GREY, YELLOW, GREEN}
 
@@ -54,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         rowsContainer = findViewById(R.id.rowsContainer);
     }
 
+    /* ################ GET & MODIFY GUESS ################ */
+
     protected String getWordFromRow() {
         final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
         StringBuilder word = new StringBuilder();
@@ -68,21 +65,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setLetter(final char letter) {
-        if (currWordLen == 4 && letter != ' ') // Index len
+        if (guesses >= MAX_GUESSES)
+            return;
+        if (currWordLen == 5 && letter != ' ') // Index len
             return;
         if (currWordLen == 0 && letter == ' ')
             return;
 
         final LinearLayout row = (LinearLayout) rowsContainer.getChildAt(guesses);
-        TextView box = (TextView) row.getChildAt(currWordLen);
+        TextView box = (TextView) row.getChildAt(currWordLen - 1); // Normalize to index
 
-        box.setText(letter);
+        System.out.println("Found box: " + box.getText().toString());
+        box.setText(" ");
 
         // Update currWordLen respectively
         if (letter != ' ')
             currWordLen++;
         else
             currWordLen--;
+    }
+
+    public void delete(View view)
+    {
+        setLetter(' ');
     }
 
     public void checkGuess(View view) {
@@ -111,11 +116,12 @@ public class MainActivity extends AppCompatActivity {
         colorScoreWord(view, wordScore);
 
         guesses++;
-        currWordLen = 0;
+        //currWordLen = 0;
     }
 
     public charScore getCharScore(final char ch, final int index) {
         final int position = secret.indexOf(ch);
+        System.out.println(ch + " pos: " + position);
         if (position == -1)
             return charScore.GREY;
         if (position == index)
@@ -133,7 +139,10 @@ public class MainActivity extends AppCompatActivity {
             // Handle 2 cases where it's needed to change background
             int bg;
             if (scores[i] == charScore.GREY)
+            {
+                System.out.println("incorrect letter");
                 bg = R.drawable.incorrect_letter;
+            }
             else if (scores[i] == charScore.YELLOW)
                 bg = R.drawable.kinda_correct_letter;
             else
@@ -143,13 +152,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean loadWordlist() throws IOException {
+    public void loadWordlist() throws IOException {
         InputStream file = getAssets().open(WORDLIST_FILE);
         InputStreamReader fileReader = new InputStreamReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         wordlist = reader.lines().collect(Collectors.toSet());
-        System.out.println(wordlist.size());
-        return true;
     }
 
     public void pickSecret() throws IOException {
@@ -170,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         file.skip(offset);
         file.read(data);
 
-        secret = new String(data);
+        secret = new String(data).toUpperCase();
         System.out.println("secret = " + secret);
     }
 }
