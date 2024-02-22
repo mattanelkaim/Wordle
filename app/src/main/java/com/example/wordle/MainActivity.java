@@ -13,6 +13,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int guesses = 0;
     int currWordLen = 0;
     public Set<String> wordlist = new HashSet<>();
+    final int INVALID_LINE = -1; // ERROR CODE
 
     enum charScore {GREY, YELLOW, GREEN}
 
@@ -40,12 +46,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try
         {
             loadWordlist();
-            pickSecret();
+            //secret = pickSecret();
+            secret = generatePerDay();
+            System.out.println("secret = " + secret);
         }
         catch (IOException e)
         {
             System.out.println("FILE ERROR: " + e);
             Toast.makeText(this, "Error opening files!", Toast.LENGTH_SHORT).show();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("Hashing problem: " + e);
+            Toast.makeText(this, "Hashing problem", Toast.LENGTH_SHORT).show();
         }
 
         setKeyboardListeners();
@@ -144,9 +157,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         charScore[] wordScore = new charScore[WORD_LENGTH];
+        String tempSecret = secret;
         for (int i = 0; i < WORD_LENGTH; i++)
-            wordScore[i] = getCharScore(word.charAt(i), i);
+        {
+            final char ch = word.charAt(i);
+            wordScore[i] = getCharScore(tempSecret, ch, i);
+            tempSecret = tempSecret.replaceFirst(String.valueOf(ch), " ");
+        }
         colorScoreWord(wordScore);
+        if (Arrays.stream(wordScore).allMatch(i -> i == charScore.GREEN))
+        {
+            win();
+            return;
+        }
 
         if (++guesses >= MAX_GUESSES)
             lose();
@@ -156,16 +179,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void lose() {
         System.out.println("player lost");
-        GridLayout answerBox = findViewById(R.id.answer);
+        final GridLayout answerBox = findViewById(R.id.answer);
         TextView answer = (TextView) answerBox.getChildAt(1);
         answer.setText(secret);
+        answer.setVisibility(View.VISIBLE);
+    }
+
+    public void win() {
+        System.out.println("player win");
+        GridLayout answerBox = findViewById(R.id.answer);
+        TextView answer = (TextView) answerBox.getChildAt(1);
+        answer.setText("You win nigga!");
         answerBox.setVisibility(View.VISIBLE);
+        answerBox.getChildAt(0).setVisibility(View.INVISIBLE);
+        guesses = MAX_GUESSES;
     }
 
     /* ################ HANDLE GUESS SCORING ################ */
 
-    public charScore getCharScore(final char ch, final int index) {
-        final int position = secret.indexOf(ch);
+    public charScore getCharScore(final String str, final char ch, final int index) {
+        final int position = str.indexOf(ch);
         System.out.println(ch + " pos: " + position);
         if (position == -1)
             return charScore.GREY;
@@ -203,7 +236,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         wordlist = reader.lines().collect(Collectors.toSet());
     }
 
-    public void pickSecret() throws IOException {
+    public String pickSecret() throws IOException {
+        return pickSecret(INVALID_LINE);
+    }
+
+    public String pickSecret(int line) throws IOException {
         // Get file and count lines
         InputStream file = getAssets().open(ANSWERS_FILE);
         InputStreamReader fileReader = new InputStreamReader(file);
@@ -211,11 +248,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final long lines = reader.lines().count();
 
         // Randomize line to pick
-        Random random = new Random();
-        final int n = random.nextInt((int) (lines - 1)) + 1;
+        if (line == INVALID_LINE)
+        {
+            Random random = new Random();
+            line = random.nextInt((int) (lines - 1)) + 1;
+        }
 
         // Read the nth line
-        final long offset = (long) (WORD_LENGTH + 1) * (n - 1);
+        final long offset = (long) (WORD_LENGTH + 1) * (line % lines - 1);
         byte[] data = new byte[WORD_LENGTH];
         file.reset(); // Seek back to top
         final long skipped = file.skip(offset);
@@ -223,7 +263,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (skipped != offset || read != WORD_LENGTH)
             throw new IOException("ERROR: Skip/read failed");
 
-        secret = new String(data).toUpperCase(); // Words in answers file are lowercase
-        System.out.println("secret = " + secret);
+        return new String(data).toUpperCase(); // Words in answers file are lowercase
+    }
+
+    public String generatePerDay() throws IOException, NoSuchAlgorithmException {
+        final LocalDate currentDate = LocalDate.now();
+
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        md5.update(currentDate.toString().getBytes());
+        final byte[] digest = md5.digest();
+        final ByteBuffer buffer = ByteBuffer.wrap(digest);
+        final int randomInt = buffer.getInt();
+        System.out.println(randomInt);
+        return pickSecret(randomInt);
     }
 }
