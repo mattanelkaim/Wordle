@@ -28,14 +28,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final String WORDLIST_FILE = "wordlist.txt";
     final int WORD_LENGTH = 5;
     final int MAX_GUESSES = 6;
-    String secret;
+    final int INVALID_LINE = -1; // ERROR CODE
+    enum charScore {GREY, YELLOW, GREEN}
+    public Set<String> wordlist = new HashSet<>();
     int guesses = 0;
     int currWordLen = 0;
-    public Set<String> wordlist = new HashSet<>();
-    final int INVALID_LINE = -1; // ERROR CODE
-
-    enum charScore {GREY, YELLOW, GREEN}
-
+    String secret;
     LinearLayout rowsContainer;
 
     @Override
@@ -43,11 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Assign a secret word to guess
         try
         {
             loadWordlist();
-            //secret = pickSecret();
-            secret = generatePerDay();
+            final String gameType = getIntent().getStringExtra(WelcomeScreen.GAME_TYPE);
+            if (gameType.equals(WelcomeScreen.DAILY))
+                secret = generatePerDay();
+            else if (gameType.equals((WelcomeScreen.UNLIMITED)))
+                secret = pickSecret();
             System.out.println("secret = " + secret);
         }
         catch (IOException e)
@@ -78,9 +80,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             row2.getChildAt(i).setOnClickListener(this);
         }
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 8; i++) // Skip enter & delete
         {
             row3.getChildAt(i).setOnClickListener(this);
+        }
+    }
+
+        public void removeKeyboardListeners() {
+        LinearLayout row1 = findViewById(R.id.keyboardRow1);
+        LinearLayout row2 = findViewById(R.id.keyboardRow2);
+        LinearLayout row3 = findViewById(R.id.keyboardRow3);
+
+        for (int i = 0; i < 10; i++)
+        {
+            row1.getChildAt(i).setOnClickListener(null);
+        }
+        for (int i = 0; i < 9; i++)
+        {
+            row2.getChildAt(i).setOnClickListener(null);
+        }
+        for (int i = 0; i < 9; i++) // Include enter & delete
+        {
+            row3.getChildAt(i).setOnClickListener(null);
         }
     }
 
@@ -183,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView answer = (TextView) answerBox.getChildAt(1);
         answer.setText(secret);
         answer.setVisibility(View.VISIBLE);
+        removeKeyboardListeners();
     }
 
     public void win() {
@@ -193,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answerBox.setVisibility(View.VISIBLE);
         answerBox.getChildAt(0).setVisibility(View.INVISIBLE);
         guesses = MAX_GUESSES;
+        removeKeyboardListeners();
     }
 
     /* ################ HANDLE GUESS SCORING ################ */
@@ -254,8 +277,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             line = random.nextInt((int) (lines - 1)) + 1;
         }
 
+        System.out.println(line % lines);
+
         // Read the nth line
-        final long offset = (long) (WORD_LENGTH + 1) * (line % lines - 1);
+        final long offset = (long) (WORD_LENGTH + 1) * (line % lines);
         byte[] data = new byte[WORD_LENGTH];
         file.reset(); // Seek back to top
         final long skipped = file.skip(offset);

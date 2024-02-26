@@ -3,4 +3,6 @@
     <string name="backspace">Backspace</string>
     <string name="enter">ENTER</string>
     <string name="the_word_was">THE WORD WAS</string>
+    <string name="play_daily">Play Daily</string>
+    <string name="play_unlimited">Play Unlimited</string>
 </resources>

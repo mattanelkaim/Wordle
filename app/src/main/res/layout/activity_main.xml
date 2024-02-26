@@ -140,10 +140,11 @@
         android:id="@+id/keyboardRow3">
 
         <TextView style="@style/keyboardKey"
-            android:layout_height="match_parent"
+            android:id="@+id/enter"
             android:layout_weight="1.5"
             android:textSize="12sp"
             android:text="@string/enter"
+            android:layout_gravity="center"
             android:onClick="checkGuess"/>
 
         <TextView style="@style/keyboardKey"
@@ -162,6 +163,7 @@
             android:text="M"/>
 
         <ImageButton style="@style/keyboardKey"
+            android:id="@+id/delete"
             android:src="@drawable/backspace"
             android:contentDescription="@string/backspace"
             android:onClick="delete"

@@ -25,23 +25,22 @@
         android:layout_height="4dp"
         android:background="@color/grey"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="30dp"/>
 
     <Button
+        android:id="@+id/dailyBtn"
         style="@style/WelcomeButton"
-        android:text="Play Daily"
+        android:text="@string/play_daily"
         android:layout_marginTop="110dp"
         android:background="@drawable/border"
-        android:onClick="toGameScreen"
         />
 
     <Button
+        android:id="@+id/unlimitedBtn"
         style="@style/WelcomeButton"
-        android:text="Play Unlimited"
+        android:text="@string/play_unlimited"
         android:layout_marginTop="25dp"
         android:background="@drawable/border"
-        android:onClick="toGameScreen"
         />
 
 </LinearLayout>
