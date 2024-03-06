@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if (gameType.equals((WelcomeScreen.UNLIMITED)))
                 secret = pickSecret();
             System.out.println("secret = " + secret);
+            Toast.makeText(this, secret, Toast.LENGTH_SHORT).show();
         }
         catch (IOException e)
         {
@@ -277,10 +278,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             line = random.nextInt((int) (lines - 1)) + 1;
         }
 
-        System.out.println(line % lines);
+        System.out.println("line " + line % lines + "/" + lines);
 
         // Read the nth line
-        final long offset = (long) (WORD_LENGTH + 1) * (line % lines);
+        final long offset = (long) (WORD_LENGTH + 2) * (line % lines);
         byte[] data = new byte[WORD_LENGTH];
         file.reset(); // Seek back to top
         final long skipped = file.skip(offset);
@@ -299,7 +300,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final byte[] digest = md5.digest();
         final ByteBuffer buffer = ByteBuffer.wrap(digest);
         final int randomInt = buffer.getInt();
-        System.out.println(randomInt);
         return pickSecret(randomInt);
     }
 }
