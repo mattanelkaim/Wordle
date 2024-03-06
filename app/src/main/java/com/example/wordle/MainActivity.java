@@ -1,6 +1,7 @@
 package com.example.wordle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.HashSet;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int currWordLen = 0;
     String secret;
     LinearLayout rowsContainer;
+    HashMap<CharSequence, TextView> keyboardKeys = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if (gameType.equals((WelcomeScreen.UNLIMITED)))
                 secret = pickSecret();
             System.out.println("secret = " + secret);
-            Toast.makeText(this, secret, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, secret, Toast.LENGTH_SHORT).show();
         }
         catch (IOException e)
         {
@@ -64,30 +68,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Hashing problem", Toast.LENGTH_SHORT).show();
         }
 
-        setKeyboardListeners();
+        setKeyboardListenersAndInitMap();
         rowsContainer = findViewById(R.id.rowsContainer);
     }
 
-    public void setKeyboardListeners() {
+    public void setKeyboardListenersAndInitMap() {
         LinearLayout row1 = findViewById(R.id.keyboardRow1);
         LinearLayout row2 = findViewById(R.id.keyboardRow2);
         LinearLayout row3 = findViewById(R.id.keyboardRow3);
 
         for (int i = 0; i < 10; i++)
         {
-            row1.getChildAt(i).setOnClickListener(this);
+            TextView curr = (TextView) row1.getChildAt(i);
+            curr.setOnClickListener(this);
+            keyboardKeys.put(curr.getText(), curr);
         }
         for (int i = 0; i < 9; i++)
         {
-            row2.getChildAt(i).setOnClickListener(this);
+            TextView curr = (TextView) row2.getChildAt(i);
+            curr.setOnClickListener(this);
+            keyboardKeys.put(curr.getText(), curr);
         }
         for (int i = 1; i < 8; i++) // Skip enter & delete
         {
-            row3.getChildAt(i).setOnClickListener(this);
+            TextView curr = (TextView) row3.getChildAt(i);
+            curr.setOnClickListener(this);
+            keyboardKeys.put(curr.getText(), curr);
         }
     }
 
-        public void removeKeyboardListeners() {
+    public void removeKeyboardListeners() {
         LinearLayout row1 = findViewById(R.id.keyboardRow1);
         LinearLayout row2 = findViewById(R.id.keyboardRow2);
         LinearLayout row3 = findViewById(R.id.keyboardRow3);
@@ -180,19 +190,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         charScore[] wordScore = new charScore[WORD_LENGTH];
         String tempSecret = secret;
+        StringBuilder checked = new StringBuilder(); // Keep tracked of "removed" (checked) chars
         for (int i = 0; i < WORD_LENGTH; i++)
         {
             final char ch = word.charAt(i);
             wordScore[i] = getCharScore(tempSecret, ch, i);
-            tempSecret = tempSecret.replaceFirst(String.valueOf(ch), " ");
+            tempSecret = tempSecret.replaceFirst(String.valueOf(ch), " "); // Delete to avoid double scoring, while not messing indexes
+
+            // Handle special case of duplicates behind that causes a wrong YELLOW score
+            final int lastIndex = checked.indexOf(String.valueOf(ch));
+            if (wordScore[i] == charScore.YELLOW && lastIndex != -1 &&
+                    secret.substring(lastIndex).indexOf(ch) + lastIndex < i)
+            {
+                wordScore[lastIndex] = charScore.GREEN; // Fix the previous "blind" score
+            }
+            checked.append(ch);
         }
+
         colorScoreWord(wordScore);
+
+        // Win if all scores are green
         if (Arrays.stream(wordScore).allMatch(i -> i == charScore.GREEN))
         {
             win();
             return;
         }
 
+        // Lose if next guess is bigger than max
         if (++guesses >= MAX_GUESSES)
             lose();
 
@@ -222,12 +246,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /* ################ HANDLE GUESS SCORING ################ */
 
     public charScore getCharScore(final String str, final char ch, final int index) {
+
         final int position = str.indexOf(ch);
-        System.out.println(ch + " pos: " + position);
         if (position == -1)
             return charScore.GREY;
         if (position == index)
             return charScore.GREEN;
+
+        final int newPos = position + str.substring(position).indexOf(ch);
+        if (newPos >= position && newPos == index)
+            return charScore.GREEN;
+
         return charScore.YELLOW;
     }
 
@@ -248,6 +277,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bg = R.drawable.correct_letter;
 
             letterBox.setBackgroundResource(bg);
+
+            TextView keyboardKey = keyboardKeys.get(letterBox.getText());
+            if (keyboardKey != null) // Key untouched
+            {
+                // Make sure key color doesn't "downgrade"
+                if (bg == R.drawable.correct_letter)
+                    keyboardKey.setBackgroundResource(bg);
+                else if (bg == R.drawable.kinda_correct_letter)
+                {
+                    if (!keyboardKey.getBackground().getConstantState().equals(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.correct_letter, getTheme())).getConstantState()))
+                        keyboardKey.setBackgroundResource(bg);
+                }
+                else
+                    keyboardKey.setBackgroundResource(R.drawable.default_letter);
+            }
         }
     }
 
