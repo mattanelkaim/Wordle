@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout style="@style/keyboardRow"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/keyboardRow1">
 
         <TextView style="@style/keyboardKey"
