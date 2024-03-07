@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final int WORD_LENGTH = 5;
     final int MAX_GUESSES = 6;
     final int INVALID_LINE = -1; // ERROR CODE
-    enum charScore {GREY, YELLOW, GREEN}
+    public enum charScore {GREY, YELLOW, GREEN}
     public Set<String> wordlist = new HashSet<>();
     int guesses = 0;
     int currWordLen = 0;
@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Handle special case of duplicates behind that causes a wrong YELLOW score
             final int lastIndex = checked.indexOf(String.valueOf(ch));
             if (wordScore[i] == charScore.YELLOW && lastIndex != -1 &&
-                    secret.substring(lastIndex).indexOf(ch) + lastIndex < i)
+                    secret.substring(lastIndex + 1).indexOf(ch) + lastIndex < i)
             {
-                wordScore[lastIndex] = charScore.GREEN; // Fix the previous "blind" score
+                wordScore[i] = charScore.GREEN; // Fix the previous "blind" score
             }
             checked.append(ch);
         }
