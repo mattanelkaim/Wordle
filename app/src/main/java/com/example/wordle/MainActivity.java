@@ -229,8 +229,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final GridLayout answerBox = findViewById(R.id.answer);
         TextView answer = (TextView) answerBox.getChildAt(1);
         answer.setText(secret);
-        answer.setVisibility(View.VISIBLE);
+        answerBox.setVisibility(View.VISIBLE);
         removeKeyboardListeners();
+        System.out.println("player absolutely lost");
     }
 
     public void win() {
