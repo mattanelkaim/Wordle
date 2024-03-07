@@ -50,5 +50,7 @@
         <item name="android:textSize">30sp</item>
         <item name="android:paddingTop">15dp</item>
         <item name="android:paddingBottom">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/grey_default_letter</item>
     </style>
 </resources>

@@ -17,8 +17,7 @@
         android:layout_marginTop="90dp"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
-        android:textFontWeight="900"
-        />
+        android:textStyle="bold"/>
 
     <!-- Divider -->
     <View
@@ -28,20 +27,16 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"/>
 
-    <Button
+    <Button style="@style/WelcomeButton"
         android:id="@+id/dailyBtn"
-        style="@style/WelcomeButton"
         android:text="@string/play_daily"
         android:layout_marginTop="110dp"
-        android:background="@drawable/border"
-        />
+        android:background="@drawable/border"/>
 
-    <Button
+    <Button style="@style/WelcomeButton"
         android:id="@+id/unlimitedBtn"
-        style="@style/WelcomeButton"
         android:text="@string/play_unlimited"
         android:layout_marginTop="25dp"
-        android:background="@drawable/border"
-        />
+        android:background="@drawable/border"/>
 
 </LinearLayout>
