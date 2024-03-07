@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (!keyboardKey.getBackground().getConstantState().equals(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.correct_letter, getTheme())).getConstantState()))
                         keyboardKey.setBackgroundResource(bg);
                 }
-                else
+                else if (!keyboardKey.getBackground().getConstantState().equals(Objects.requireNonNull(ResourcesCompat.getDrawable(getResources(), R.drawable.correct_letter, getTheme())).getConstantState()))
                     keyboardKey.setBackgroundResource(R.drawable.default_letter);
             }
         }
