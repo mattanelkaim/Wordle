@@ -42,7 +42,7 @@
         <item name="android:layout_marginHorizontal">15dp</item>
     </style>
 
-    <style name="WelcomeButton" parent="@style/Widget.AppCompat.Button">
+    <style name="WelcomeButton">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
