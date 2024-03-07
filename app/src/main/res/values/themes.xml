@@ -1,8 +1,6 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Base.Theme.Wordle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
     <style name="Theme.Wordle" parent="Base.Theme.Wordle" />
 
@@ -52,5 +50,6 @@
         <item name="android:paddingBottom">15dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/grey_default_letter</item>
+        <item name="android:background">@drawable/border</item>
     </style>
 </resources>
