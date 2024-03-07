@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         System.out.println("player win");
         GridLayout answerBox = findViewById(R.id.answer);
         TextView answer = (TextView) answerBox.getChildAt(1);
-        answer.setText("You win nigga!");
+        answer.setText(R.string.win_msg);
         answerBox.setVisibility(View.VISIBLE);
         answerBox.getChildAt(0).setVisibility(View.INVISIBLE);
         guesses = MAX_GUESSES;
