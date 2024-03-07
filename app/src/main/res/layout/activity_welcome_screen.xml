@@ -25,12 +25,12 @@
         android:layout_height="4dp"
         android:background="@color/grey"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="40dp"/>
 
     <Button style="@style/WelcomeButton"
         android:id="@+id/dailyBtn"
         android:text="@string/play_daily"
-        android:layout_marginTop="110dp"/>
+        android:layout_marginTop="100dp"/>
 
     <Button style="@style/WelcomeButton"
         android:id="@+id/unlimitedBtn"
