@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void setLetter(final char letter) {
         if (guesses >= MAX_GUESSES)
             return;
-        if (letter != ' ' && currWordLen == 5) // Index len
+        if (letter != ' ' && currWordLen == WORD_LENGTH) // Index len
             return;
         if (letter == ' ' && --currWordLen == -1) // Decrease len to delete correctly
         {
